@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vector>
 #include <set>
+#include <fstream>
 
 
 struct Edge{
@@ -24,8 +25,8 @@ protected:
     int VertexCount = 0;
 
 public:
-    Graf();
-    ~Graf();
+    Graf()= default;
+    ~Graf()= default;
 
     virtual void addVertex(const Type& value) = 0;
     virtual void addEdge(int source, int target, int value) = 0;
@@ -34,10 +35,14 @@ public:
     virtual void print() = 0;
     virtual Type& operator [] (int vertex) = 0;
     virtual Type operator [] (int vertex)const = 0;
-    int size()const;
-    Type GetVertex(int vertex)const;
+    int size()const{
+        return this->VertexCount;
+    };
+    Type GetVertex(int vertex)const{
+        return this->labels[vertex];
+    };
     virtual bool isEdge(int source, int target) = 0;
-    virtual std::set<int> neighbours(int vertex)const = 0;
+    virtual std::vector<int> neighbours(int vertex)const = 0;
 
 
 
